@@ -3,7 +3,7 @@ FROM alpine:latest AS builder
 ARG TARGETPLATFORM
 RUN apk add --no-cache curl binutils jq xz gcc libc-dev && \
     VERSION=$(curl -s "https://api.github.com/repos/klzgrad/naiveproxy/releases/latest" | jq -r .tag_name) && \
-    curl --fail --silent -L https://github.com/klzgrad/naiveproxy/releases/download/${VERSION}/naiveproxy-${VERSION}-linux-x64.tar.xz | tar xJvf - -C / && \
+    curl --fail --silent -L https://github.com/klzgrad/naiveproxy/releases/download/${VERSION}/naiveproxy-${VERSION}-openwrt-x86_64.tar.xz | tar xJvf - -C / && \
     mv naiveproxy-* naiveproxy && \
     chmod +x naiveproxy/naive && \
     apk del curl binutils jq xz gcc libc-dev && \
